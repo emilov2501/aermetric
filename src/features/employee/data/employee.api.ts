@@ -26,6 +26,23 @@ export const employeeApi = createApi({
         url: `/employees/${id}`,
         method: "DELETE",
       }),
+      async onQueryStarted(id, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+
+          dispatch(
+            employeeApi.util.updateQueryData(
+              "getEmployees",
+              undefined,
+              (draft) => {
+                return draft.filter((item) => item.id !== id);
+              }
+            )
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
     updateEmployee: builder.mutation<
       EmployeeEntity,
