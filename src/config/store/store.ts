@@ -1,4 +1,4 @@
-import { employeeApi } from "@/features/employee/data/employee.repository.impl";
+import { employeeApi } from "@/features/employee/data/employee.api";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const makeStore = () => {
