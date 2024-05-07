@@ -10,7 +10,7 @@ interface Props {
 
 export const EmployeeList: React.FC<Props> = ({ employees }) => {
   return (
-    <div className="space-y-4">
+    <div className="grid lg:grid-cols-4 sm:grid-cols-3 gap-5">
       {employees.map((item) => (
         <EmployeeCard key={item.id} {...item} />
       ))}
