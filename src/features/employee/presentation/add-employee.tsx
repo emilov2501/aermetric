@@ -35,8 +35,10 @@ export const AddEmployee = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <Button asChild variant="secondary">
-          <div className="flex gap-1 items-center uppercase">Add employee</div>
+        <Button asChild variant="secondary" className="max-sm:w-full">
+          <div className="flex gap-1 items-center uppercase truncate">
+            Add employee
+          </div>
         </Button>
       </DialogTrigger>
       <DialogContent>

@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto space-y-5 p-5">
-      <div className="flex gap-3">
+      <div className="flex gap-3 max-sm:flex-col">
         <AddEmployee />
         <DeleteChooseEmployees />
       </div>
