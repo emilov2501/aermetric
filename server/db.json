@@ -25,12 +25,12 @@
       "id": "3596826246643712"
     },
     {
-      "id": "3596826401832960",
-      "name": "Molly",
+      "name": "fd",
       "email": "molly@mail.ru",
       "age": 23,
       "position": "Developer",
-      "department": "Development"
+      "department": "Development",
+      "id": "3596826401832960"
     },
     {
       "name": "asd",
@@ -41,7 +41,7 @@
       "id": "3596826796097536"
     },
     {
-      "name": "Kutman",
+      "name": "fds",
       "email": "simon@mai.ru",
       "age": 23,
       "position": "Developer",
