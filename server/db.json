@@ -1,7 +1,7 @@
 {
   "employees": [
     {
-      "id": "1",
+      "id": 1,
       "name": "John Doe",
       "email": "john.doe@example.com",
       "age": 30,
@@ -9,7 +9,7 @@
       "department": "Development"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Jane Smith",
       "email": "jane.smith@example.com",
       "age": 25,
@@ -22,7 +22,7 @@
       "age": 20,
       "position": "Developer",
       "department": "Development",
-      "id": "3"
+      "id": 3
     }
   ]
 }
