@@ -7,7 +7,7 @@ export default function Home() {
   const { data = [] } = useGetEmployeesQuery();
 
   return (
-    <div>
+    <div className="container mx-auto px-5">
       <EmployeeList employees={data} />
     </div>
   );
