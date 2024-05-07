@@ -5,6 +5,7 @@ import { EmployeeEntity } from "../domain/employee.entity";
 
 interface EmployeeCardProps extends EmployeeEntity {
   after?: ReactNode;
+  before?: ReactNode;
 }
 
 export const EmployeeCard: React.FC<EmployeeCardProps> = ({
@@ -14,13 +15,17 @@ export const EmployeeCard: React.FC<EmployeeCardProps> = ({
   department,
   position,
   after,
+  before,
 }) => {
   return (
     <div className="border rounded-md p-4 box-border flex flex-col gap-3">
       <div className="flex flex-col">
         <div className="flex items-start justify-between">
           <span className="text-lg font-medium">{name}</span>
-          {after}
+          <div className="flex gap-3 items-center">
+            {after}
+            {before}
+          </div>
         </div>
         <small className="text-slate-500 truncate">{email}</small>
       </div>

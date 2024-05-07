@@ -2,6 +2,7 @@
 
 import React from "react";
 import { EmployeeEntity } from "../domain/employee.entity";
+import { ChooseEmployee } from "./choose-employee";
 import { EditEmployee } from "./edit-employee";
 import { EmployeeCard } from "./employee-card";
 
@@ -15,6 +16,7 @@ export const EmployeeList: React.FC<Props> = ({ employees }) => {
       {employees.map((item) => (
         <EmployeeCard
           key={item.id}
+          before={<ChooseEmployee {...item} />}
           after={<EditEmployee {...item} />}
           {...item}
         />
