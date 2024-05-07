@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/shared/ui/dialog";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDeleteEmployeeMutation } from "../data/employee.api";
 import { setEmployee } from "../data/employee.slice";
 
@@ -36,12 +36,6 @@ export const DeleteChooseEmployees = () => {
   const disabled = useMemo(() => {
     return items.every((item) => !checked[item.id]);
   }, [items]);
-
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   return (
     <Dialog onOpenChange={setOpen} open={open}>
