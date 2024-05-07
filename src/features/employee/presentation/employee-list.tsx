@@ -2,6 +2,7 @@
 
 import React from "react";
 import { EmployeeEntity } from "../domain/employee.entity";
+import { EditEmployee } from "./edit-employee";
 import { EmployeeCard } from "./employee-card";
 
 interface Props {
@@ -12,7 +13,11 @@ export const EmployeeList: React.FC<Props> = ({ employees }) => {
   return (
     <div className="grid lg:grid-cols-4 sm:grid-cols-3 gap-5">
       {employees.map((item) => (
-        <EmployeeCard key={item.id} {...item} />
+        <EmployeeCard
+          key={item.id}
+          after={<EditEmployee {...item} />}
+          {...item}
+        />
       ))}
     </div>
   );

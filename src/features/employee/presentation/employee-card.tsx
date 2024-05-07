@@ -1,19 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode } from "react";
 import { EmployeeEntity } from "../domain/employee.entity";
 
-export const EmployeeCard: React.FC<EmployeeEntity> = ({
+interface EmployeeCardProps extends EmployeeEntity {
+  after?: ReactNode;
+}
+
+export const EmployeeCard: React.FC<EmployeeCardProps> = ({
   name,
   email,
   age,
   department,
   position,
+  after,
 }) => {
   return (
     <div className="border rounded-md p-4 box-border flex flex-col gap-3">
       <div className="flex flex-col">
-        <span className="text-lg font-medium">{name}</span>
+        <div className="flex items-start justify-between">
+          <span className="text-lg font-medium">{name}</span>
+          {after}
+        </div>
         <small className="text-slate-500 truncate">{email}</small>
       </div>
       <ul className="text-sm">

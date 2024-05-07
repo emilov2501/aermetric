@@ -9,27 +9,30 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/shared/ui/dialog";
-import { useCreateEmployeeMutation } from "../data/employee.api";
+import { Edit } from "lucide-react";
+import { EmployeeEntity } from "../domain/employee.entity";
 import { EmployeeForm } from "./employee-form";
 
-export const AddEmployee = () => {
-  const add = useCreateEmployeeMutation();
-
+export const EditEmployee = (employee: EmployeeEntity) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button asChild variant="secondary">
-          <div className="flex gap-1 items-center uppercase">Add employee</div>
-        </Button>
+        <Edit size={20} className="text-slate-400 cursor-pointer" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create a new employee</DialogTitle>
+          <DialogTitle>Edit {employee.name}</DialogTitle>
         </DialogHeader>
-        <EmployeeForm onSubmit={(data) => console.log(data)} />
+        <EmployeeForm
+          onSubmit={(data) => console.log(data)}
+          initialValues={{
+            ...employee,
+            age: employee.age.toString(),
+          }}
+        />
         <DialogFooter>
           <Button type="submit" form="employee-form">
-            Create
+            Save
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -8,6 +8,7 @@ import {
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import get from "lodash.get";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -15,17 +16,21 @@ type UseEmployeeForm = z.infer<typeof formSchema>;
 
 interface EmployeeFormProps {
   onSubmit: (data: UseEmployeeForm) => void;
+  initialValues?: UseEmployeeForm;
 }
 
-export const EmployeeForm: React.FC<EmployeeFormProps> = ({ onSubmit }) => {
+export const EmployeeForm: React.FC<EmployeeFormProps> = ({
+  initialValues,
+  onSubmit,
+}) => {
   const form = useForm<UseEmployeeForm>({
     resolver: zodResolver(formSchema),
     values: {
-      name: "",
-      email: "",
-      age: "",
-      position: "",
-      department: "",
+      name: get(initialValues, "name", ""),
+      email: get(initialValues, "email", ""),
+      age: get(initialValues, "age", ""),
+      position: get(initialValues, "position", ""),
+      department: get(initialValues, "department", ""),
     },
   });
 
