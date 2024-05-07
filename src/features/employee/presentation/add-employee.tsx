@@ -18,16 +18,16 @@ const generator = uuid(0);
 export const AddEmployee = () => {
   const [open, setOpen] = useState(false);
 
-  const [createEmployee, result] = useCreateEmployeeMutation();
+  const [createEmployee] = useCreateEmployeeMutation();
 
-  const onSubmit = (data: UseEmployeeForm) => {
-    createEmployee({
+  const onSubmit = async (data: UseEmployeeForm) => {
+    const payload = await createEmployee({
       ...data,
       age: +data.age,
       id: generator.uuid(),
-    });
+    }).unwrap();
 
-    if (result.isSuccess) {
+    if (payload) {
       setOpen(false);
     }
   };

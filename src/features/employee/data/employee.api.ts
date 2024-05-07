@@ -11,12 +11,29 @@ export const employeeApi = createApi({
     getEmployee: builder.query<EmployeeEntity, number>({
       query: (id) => `/employees/${id}`, // Endpoint for fetching a single employee by ID
     }),
-    createEmployee: builder.mutation<void, EmployeeEntity>({
+    createEmployee: builder.mutation<EmployeeEntity, EmployeeEntity>({
       query: (newEmployee) => ({
         url: "/employees",
         method: "POST",
         body: newEmployee,
       }),
+      async onQueryStarted(args, { queryFulfilled, dispatch }) {
+        try {
+          const { data: createdEmployee } = await queryFulfilled;
+
+          dispatch(
+            employeeApi.util.updateQueryData(
+              "getEmployees",
+              undefined,
+              (draft) => {
+                draft?.push(createdEmployee);
+              }
+            )
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
     deleteEmployee: builder.mutation<void, number>({
       query: (id) => ({
