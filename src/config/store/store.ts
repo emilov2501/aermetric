@@ -1,8 +1,13 @@
+import { employeeApi } from "@/features/employee/data/employee.repository.impl";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      [employeeApi.reducerPath]: employeeApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(employeeApi.middleware),
   });
 };
 
