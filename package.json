@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "serve": "json-server -w -p 9000 server/db.json"
+    "serve": "watchexec --exts json --restart json-server -w -p 9000 server/db.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

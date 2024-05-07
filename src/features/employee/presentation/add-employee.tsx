@@ -24,7 +24,7 @@ export const AddEmployee = () => {
     const payload = await createEmployee({
       ...data,
       age: +data.age,
-      id: generator.uuid(),
+      id: +generator.uuid(),
     }).unwrap();
 
     if (payload) {

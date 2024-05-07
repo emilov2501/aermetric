@@ -3,10 +3,12 @@ import { EmployeeEntity } from "../domain/employee.entity";
 
 export const employeeApi = createApi({
   reducerPath: "employeeApi",
+  tagTypes: ["employee"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }), // Change '/api' to your API base URL
   endpoints: (builder) => ({
     getEmployees: builder.query<EmployeeEntity[], void>({
       query: () => "/employees", // Endpoint for fetching all employees
+      providesTags: ["employee"],
     }),
     getEmployee: builder.query<EmployeeEntity, number>({
       query: (id) => `/employees/${id}`, // Endpoint for fetching a single employee by ID
@@ -17,23 +19,7 @@ export const employeeApi = createApi({
         method: "POST",
         body: newEmployee,
       }),
-      async onQueryStarted(args, { queryFulfilled, dispatch }) {
-        try {
-          const { data: createdEmployee } = await queryFulfilled;
-
-          dispatch(
-            employeeApi.util.updateQueryData(
-              "getEmployees",
-              undefined,
-              (draft) => {
-                draft?.push(createdEmployee);
-              }
-            )
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      invalidatesTags: ["employee"],
     }),
     deleteEmployee: builder.mutation<void, number>({
       query: (id) => ({
@@ -50,27 +36,7 @@ export const employeeApi = createApi({
         method: "PUT",
         body: data,
       }),
-      async onQueryStarted(args, { queryFulfilled, dispatch }) {
-        try {
-          const { data: updatedEmployee } = await queryFulfilled;
-
-          dispatch(
-            employeeApi.util.updateQueryData(
-              "getEmployees",
-              undefined,
-              (draft) => {
-                const employee = draft.find((item) => item.id === args.id);
-
-                if (employee) {
-                  Object.assign(employee, updatedEmployee);
-                }
-              }
-            )
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      invalidatesTags: ["employee"],
     }),
   }),
 });
