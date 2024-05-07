@@ -17,12 +17,12 @@
       "department": "Design"
     },
     {
-      "id": "3",
-      "name": "Alice Johnson",
-      "email": "alice.johnson@example.com",
-      "age": 35,
-      "position": "Project Manager",
-      "department": "Project Management"
+      "name": "Molly",
+      "email": "molly@mail.ru",
+      "age": 20,
+      "position": "Developer",
+      "department": "Development",
+      "id": "3"
     }
   ]
 }

@@ -42,7 +42,7 @@ export const employeeApi = createApi({
       }),
     }),
     updateEmployee: builder.mutation<
-      void,
+      EmployeeEntity,
       { id: number; data: EmployeeEntity }
     >({
       query: ({ id, data }) => ({
@@ -50,6 +50,27 @@ export const employeeApi = createApi({
         method: "PUT",
         body: data,
       }),
+      async onQueryStarted(args, { queryFulfilled, dispatch }) {
+        try {
+          const { data: updatedEmployee } = await queryFulfilled;
+
+          dispatch(
+            employeeApi.util.updateQueryData(
+              "getEmployees",
+              undefined,
+              (draft) => {
+                const employee = draft.find((item) => item.id === args.id);
+
+                if (employee) {
+                  Object.assign(employee, updatedEmployee);
+                }
+              }
+            )
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
   }),
 });

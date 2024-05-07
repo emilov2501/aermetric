@@ -10,12 +10,33 @@ import {
   DialogTrigger,
 } from "@/shared/ui/dialog";
 import { Edit } from "lucide-react";
+import { useState } from "react";
+import { useUpdateEmployeeMutation } from "../data/employee.api";
 import { EmployeeEntity } from "../domain/employee.entity";
-import { EmployeeForm } from "./employee-form";
+import { EmployeeForm, UseEmployeeForm } from "./employee-form";
 
 export const EditEmployee = (employee: EmployeeEntity) => {
+  const [open, setOpen] = useState(false);
+
+  const [updateEmployee] = useUpdateEmployeeMutation();
+
+  const onSubmit = async (data: UseEmployeeForm) => {
+    const payload = await updateEmployee({
+      data: {
+        ...data,
+        age: +data.age,
+        id: employee.id,
+      },
+      id: employee.id,
+    }).unwrap();
+
+    if (payload) {
+      setOpen(false);
+    }
+  };
+
   return (
-    <Dialog>
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger>
         <Edit size={20} className="text-slate-400 cursor-pointer" />
       </DialogTrigger>
@@ -24,7 +45,7 @@ export const EditEmployee = (employee: EmployeeEntity) => {
           <DialogTitle>Edit {employee.name}</DialogTitle>
         </DialogHeader>
         <EmployeeForm
-          onSubmit={(data) => console.log(data)}
+          onSubmit={onSubmit}
           initialValues={{
             ...employee,
             age: employee.age.toString(),
