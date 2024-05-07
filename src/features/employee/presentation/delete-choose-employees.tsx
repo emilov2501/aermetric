@@ -1,6 +1,8 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/config/store";
 import { Button } from "@/shared/ui/button";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useDeleteEmployeeMutation } from "../data/employee.api";
 import { setEmployee } from "../data/employee.slice";
 
@@ -17,10 +19,15 @@ export const DeleteChooseEmployees = () => {
     });
   }, [checked]);
 
+  const disabled = useMemo(() => {
+    const items = Object.values(checked);
+    return items.every((item) => !checked[item.id]);
+  }, [checked]);
+
   return (
     <Button
-      asChild
       variant="destructive"
+      disabled={disabled}
       className="cursor-pointer"
       onClick={handleDelete}
     >
