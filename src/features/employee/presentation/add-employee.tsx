@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/shared/ui/button";
 import {
   Dialog,
@@ -9,14 +8,32 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/shared/ui/dialog";
+import { useState } from "react";
+import uuid from "uuid-int";
 import { useCreateEmployeeMutation } from "../data/employee.api";
-import { EmployeeForm } from "./employee-form";
+import { EmployeeForm, UseEmployeeForm } from "./employee-form";
+
+const generator = uuid(0);
 
 export const AddEmployee = () => {
-  const add = useCreateEmployeeMutation();
+  const [open, setOpen] = useState(false);
+
+  const [createEmployee, result] = useCreateEmployeeMutation();
+
+  const onSubmit = (data: UseEmployeeForm) => {
+    createEmployee({
+      ...data,
+      age: +data.age,
+      id: generator.uuid(),
+    });
+
+    if (result.isSuccess) {
+      setOpen(false);
+    }
+  };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <Button asChild variant="secondary">
           <div className="flex gap-1 items-center uppercase">Add employee</div>
@@ -26,7 +43,7 @@ export const AddEmployee = () => {
         <DialogHeader>
           <DialogTitle>Create a new employee</DialogTitle>
         </DialogHeader>
-        <EmployeeForm onSubmit={(data) => console.log(data)} />
+        <EmployeeForm onSubmit={onSubmit} />
         <DialogFooter>
           <Button type="submit" form="employee-form">
             Create

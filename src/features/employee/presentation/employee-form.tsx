@@ -12,7 +12,7 @@ import get from "lodash.get";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-type UseEmployeeForm = z.infer<typeof formSchema>;
+export type UseEmployeeForm = z.infer<typeof formSchema>;
 
 interface EmployeeFormProps {
   onSubmit: (data: UseEmployeeForm) => void;

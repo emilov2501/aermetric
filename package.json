@@ -27,6 +27,7 @@
     "react-redux": "^9.1.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "uuid-int": "^3.1.0",
     "zod": "^3.23.6"
   },
   "devDependencies": {
