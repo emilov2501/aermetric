@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { FilterEmployeeDto } from "../domain/employee.dto";
 import { EmployeeEntity } from "../domain/employee.entity";
 
 export const employeeApi = createApi({
@@ -6,8 +7,14 @@ export const employeeApi = createApi({
   tagTypes: ["employee"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }), // Change '/api' to your API base URL
   endpoints: (builder) => ({
-    getEmployees: builder.query<EmployeeEntity[], void>({
-      query: () => "/employees", // Endpoint for fetching all employees
+    getEmployees: builder.query<EmployeeEntity[], Partial<FilterEmployeeDto>>({
+      query: (params) => ({
+        url: "/employees",
+        method: "GET",
+        params: {
+          ...withLike(params.filter),
+        },
+      }), // Endpoint for fetching all employees
       providesTags: ["employee"],
     }),
     getEmployee: builder.query<EmployeeEntity, number>({
@@ -26,23 +33,7 @@ export const employeeApi = createApi({
         url: `/employees/${id}`,
         method: "DELETE",
       }),
-      async onQueryStarted(id, { queryFulfilled, dispatch }) {
-        try {
-          await queryFulfilled;
-
-          dispatch(
-            employeeApi.util.updateQueryData(
-              "getEmployees",
-              undefined,
-              (draft) => {
-                return draft.filter((item) => item.id !== id);
-              }
-            )
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      invalidatesTags: ["employee"],
     }),
     updateEmployee: builder.mutation<
       EmployeeEntity,
@@ -66,3 +57,17 @@ export const {
   useDeleteEmployeeMutation,
   useUpdateEmployeeMutation,
 } = employeeApi;
+
+function withLike(filter?: Partial<EmployeeEntity>) {
+  if (!filter) {
+    return {};
+  }
+
+  let record = {};
+
+  for (let [key, item] of Object.entries(filter)) {
+    Object.assign(record, { ...record, [`${key}_like`]: item });
+  }
+
+  return record;
+}
