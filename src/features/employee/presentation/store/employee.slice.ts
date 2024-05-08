@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { EmployeeEntity } from "../domain/employee.entity";
+import { EmployeeEntity } from "../../domain/employee.entity";
 
 interface EmployeeState {
   checked: Record<string, EmployeeEntity>;
@@ -9,8 +9,10 @@ const initialState: EmployeeState = {
   checked: {},
 };
 
+export const name = "employee";
+
 export const employeeSlice = createSlice({
-  name: "employee",
+  name,
   initialState,
   reducers: {
     setEmployee(state, action: PayloadAction<EmployeeEntity>) {

@@ -14,7 +14,7 @@ import {
 
 import { useCallback, useMemo, useState } from "react";
 import { useDeleteEmployeeMutation } from "../../data/employee.api";
-import { setEmployee } from "../../data/employee.slice";
+import { setEmployee } from "../store/employee.slice";
 
 export const DeleteChooseEmployees = () => {
   const [open, setOpen] = useState(false);

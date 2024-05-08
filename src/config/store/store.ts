@@ -1,12 +1,14 @@
 import { employeeApi } from "@/features/employee/data/employee.api";
-import employeeSlice from "@/features/employee/data/employee.slice";
+import employeeSlice, {
+  name as employeeName,
+} from "@/features/employee/presentation/store/employee.slice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       [employeeApi.reducerPath]: employeeApi.reducer,
-      employee: employeeSlice,
+      [employeeName]: employeeSlice,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(employeeApi.middleware),

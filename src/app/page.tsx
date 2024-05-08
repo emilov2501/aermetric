@@ -1,14 +1,15 @@
 "use client";
 
-import { useGetEmployeesQuery } from "@/features/employee/data/employee.api";
 import {
   AddEmployee,
   DeleteChooseEmployees,
   EmployeeList,
+  SearchEmployee,
+  useEmployeeFilter,
 } from "@/features/employee/presentation";
 
 export default function Home() {
-  const { data = [] } = useGetEmployeesQuery();
+  const { filteredData } = useEmployeeFilter();
 
   return (
     <div className="container mx-auto space-y-5 p-5">
@@ -16,7 +17,8 @@ export default function Home() {
         <AddEmployee />
         <DeleteChooseEmployees />
       </div>
-      <EmployeeList employees={data} />
+      <SearchEmployee />
+      <EmployeeList employees={filteredData} />
     </div>
   );
 }
