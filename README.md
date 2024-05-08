@@ -29,6 +29,18 @@ npm run dev
 ```
 npm run test
 ```
+
+#### В рамках проекта, была использовано
+- NextJS 14+
+- RTK Query
+- Json Server
+- TailwindCSS
+- shadcn/ui
+- React Hook Form
+- Playwright
+- uuid
+- lodash
+
 #### Технические параметры
 1. npm (v10.2.3)
 2. node (v18.19.0)
