@@ -3,6 +3,7 @@
 import React from "react";
 import { EmployeeEntity } from "../../domain/employee.entity";
 import { ChooseEmployee } from "./choose-employee";
+import { DeleteEmployee } from "./delete-employee";
 import { EditEmployee } from "./edit-employee";
 import { EmployeeCard } from "./employee-card";
 
@@ -17,7 +18,12 @@ export const EmployeeList: React.FC<Props> = ({ employees }) => {
         <EmployeeCard
           key={item.id}
           before={<ChooseEmployee {...item} />}
-          after={<EditEmployee {...item} />}
+          after={
+            <div className="flex gap-2 items-center">
+              <EditEmployee {...item} />
+              <DeleteEmployee {...item} />
+            </div>
+          }
           {...item}
         />
       ))}

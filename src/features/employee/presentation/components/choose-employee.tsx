@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox } from "@/shared/ui/checkbox";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { memo, useCallback } from "react";

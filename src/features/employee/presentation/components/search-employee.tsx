@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch } from "@/config/store";
 import { Input } from "@/shared/ui/input";
 import { ChangeEvent } from "react";

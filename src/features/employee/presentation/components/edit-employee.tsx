@@ -38,7 +38,11 @@ export const EditEmployee = (employee: EmployeeEntity) => {
   return (
     <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger>
-        <Edit size={20} className="text-slate-400 cursor-pointer" />
+        <Edit
+          size={20}
+          strokeWidth={1}
+          className="text-slate-400 cursor-pointer"
+        />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

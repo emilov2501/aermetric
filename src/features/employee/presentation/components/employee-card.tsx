@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { EmployeeEntity } from "../domain/employee.entity";
+import { EmployeeEntity } from "../../domain/employee.entity";
 
 interface EmployeeCardProps extends EmployeeEntity {
   after?: ReactNode;
@@ -18,28 +18,32 @@ export const EmployeeCard: React.FC<EmployeeCardProps> = ({
   before,
 }) => {
   return (
-    <div className="border rounded-md p-4 box-border flex flex-col gap-3">
-      <div className="flex flex-col">
-        <div className="flex items-start justify-between">
-          <span className="text-lg font-medium">{name}</span>
-          <div className="flex gap-3 items-center">
-            {after}
-            {before}
-          </div>
+    <div className="border rounded-md p-4 box-border flex justify-between overflow-hidden gap-2">
+      <div className="flex flex-col gap-3 w-[75%] truncate">
+        <div className="flex flex-col">
+          <span className="text-lg font-medium truncate">{name}</span>
+          <small className="text-slate-500 truncate">{email}</small>
         </div>
-        <small className="text-slate-500 truncate">{email}</small>
+        <ul className="text-sm">
+          <li className="truncate">
+            <strong className="font-medium">Age:</strong> {age}
+          </li>
+          <li className="truncate">
+            <strong className="font-medium">Department:</strong>
+            <span className="truncate">{department}</span>
+          </li>
+          <li className="truncate">
+            <strong className="font-medium">Position:</strong>
+            <span>{position}</span>
+          </li>
+        </ul>
       </div>
-      <ul className="text-sm">
-        <li>
-          <strong className="font-medium">Age:</strong> {age}{" "}
-        </li>
-        <li>
-          <strong className="font-medium">Department:</strong> {department}{" "}
-        </li>
-        <li>
-          <strong className="font-medium">Position:</strong> {position}{" "}
-        </li>
-      </ul>
+      <div className="h-full grow ">
+        <div className="flex flex-col justify-between items-end h-full">
+          {after}
+          {before}
+        </div>
+      </div>
     </div>
   );
 };
