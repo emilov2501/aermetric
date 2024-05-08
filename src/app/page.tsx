@@ -5,6 +5,7 @@ import {
   DeleteChooseEmployees,
   EmployeeList,
   SearchEmployee,
+  SelectFilter,
   useEmployeeFilter,
 } from "@/features/employee/presentation";
 import { ScrollArea } from "@/shared/ui/scroll-area";
@@ -18,7 +19,11 @@ export default function Home() {
         <AddEmployee />
         <DeleteChooseEmployees />
       </div>
-      <SearchEmployee />
+      <SearchEmployee
+        before={
+          <SelectFilter className="shadow-none border-r-0 rounded-r-none" />
+        }
+      />
       <ScrollArea className="rounded-md h-[calc(100vh-200px)] overflow-auto border p-4">
         <EmployeeList employees={filteredData} />
       </ScrollArea>

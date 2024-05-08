@@ -1,16 +1,31 @@
 "use client";
 
-import { useAppDispatch } from "@/config/store";
+import { useAppDispatch, useAppSelector } from "@/config/store";
+import { cn } from "@/shared/lib/utils";
 import { Input } from "@/shared/ui/input";
-import { ChangeEvent } from "react";
+import React, { ChangeEvent, ReactNode } from "react";
 import { setSearch } from "../store/employee.slice";
 
-export const SearchEmployee = () => {
+interface SearchEmployeeProps {
+  before?: ReactNode;
+}
+
+export const SearchEmployee: React.FC<SearchEmployeeProps> = ({ before }) => {
   const dispatch = useAppDispatch();
+  const filterBy = useAppSelector((state) => state.employee.filter_by);
 
   const search = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearch(e.target.value));
   };
 
-  return <Input placeholder="Search" onChange={search} />;
+  return (
+    <div className="flex gap-0">
+      {before}
+      <Input
+        className={cn(before && "shadow-none border-l-0 rounded-l-none ")}
+        placeholder={`Search by ${filterBy}`}
+        onChange={search}
+      />
+    </div>
+  );
 };
