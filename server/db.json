@@ -1,14 +1,6 @@
 {
   "employees": [
     {
-      "name": "Rivers George",
-      "email": "riversgeorge@xinware.com",
-      "age": 49,
-      "position": "Dolor elit id reprehenderit magna ut tempor sint ut in Lorem irure cillum commodo.",
-      "department": "Bluplanet",
-      "id": 18
-    },
-    {
       "name": "Jason Statem",
       "email": "essieday@bluplanet.com",
       "age": 18,

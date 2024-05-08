@@ -12,6 +12,14 @@ interface Props {
 }
 
 export const EmployeeList: React.FC<Props> = ({ employees }) => {
+  if (employees.length === 0) {
+    return (
+      <p className="text-muted-foreground text-center">
+        Oops, employees not found!
+      </p>
+    );
+  }
+
   return (
     <div className="grid lg:grid-cols-4 sm:grid-cols-3 gap-5">
       {employees.map((item) => (
