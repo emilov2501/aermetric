@@ -11,8 +11,8 @@ import {
 } from "@/shared/ui/dialog";
 import { Edit } from "lucide-react";
 import { useState } from "react";
-import { useUpdateEmployeeMutation } from "../data/employee.api";
-import { EmployeeEntity } from "../domain/employee.entity";
+import { useUpdateEmployeeMutation } from "../../data/employee.api";
+import { EmployeeEntity } from "../../domain/employee.entity";
 import { EmployeeForm, UseEmployeeForm } from "./employee-form";
 
 export const EditEmployee = (employee: EmployeeEntity) => {

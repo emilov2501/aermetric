@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { EmployeeEntity } from "../domain/employee.entity";
+import { EmployeeEntity } from "../../domain/employee.entity";
 import { ChooseEmployee } from "./choose-employee";
 import { EditEmployee } from "./edit-employee";
 import { EmployeeCard } from "./employee-card";

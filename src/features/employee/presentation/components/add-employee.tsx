@@ -10,7 +10,7 @@ import {
 } from "@/shared/ui/dialog";
 import { useState } from "react";
 import uuid from "uuid-int";
-import { useCreateEmployeeMutation } from "../data/employee.api";
+import { useCreateEmployeeMutation } from "../../data/employee.api";
 import { EmployeeForm, UseEmployeeForm } from "./employee-form";
 
 const generator = uuid(0);

@@ -1,9 +1,11 @@
 "use client";
 
 import { useGetEmployeesQuery } from "@/features/employee/data/employee.api";
-import { AddEmployee } from "@/features/employee/presentation/add-employee";
-import { DeleteChooseEmployees } from "@/features/employee/presentation/delete-choose-employees";
-import { EmployeeList } from "@/features/employee/presentation/employee-list";
+import {
+  AddEmployee,
+  DeleteChooseEmployees,
+  EmployeeList,
+} from "@/features/employee/presentation";
 
 export default function Home() {
   const { data = [] } = useGetEmployeesQuery();

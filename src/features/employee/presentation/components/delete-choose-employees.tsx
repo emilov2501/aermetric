@@ -13,8 +13,8 @@ import {
 } from "@/shared/ui/dialog";
 
 import { useCallback, useMemo, useState } from "react";
-import { useDeleteEmployeeMutation } from "../data/employee.api";
-import { setEmployee } from "../data/employee.slice";
+import { useDeleteEmployeeMutation } from "../../data/employee.api";
+import { setEmployee } from "../../data/employee.slice";
 
 export const DeleteChooseEmployees = () => {
   const [open, setOpen] = useState(false);
