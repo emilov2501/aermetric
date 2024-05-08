@@ -38,8 +38,8 @@ npm run test
 - shadcn/ui
 - React Hook Form
 - Playwright
-- uuid
-- lodash
+- zod
+- lucide
 
 #### Технические параметры
 1. npm (v10.2.3)
