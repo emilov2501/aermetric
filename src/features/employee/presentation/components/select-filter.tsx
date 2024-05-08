@@ -27,7 +27,9 @@ export const SelectFilter: React.FC<SelectFilterProps> = ({ className }) => {
       </SelectTrigger>
       <SelectContent>
         {options.map((opt) => (
-          <SelectItem value={opt.value}>{opt.label}</SelectItem>
+          <SelectItem key={opt.value} value={opt.value}>
+            {opt.label}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>
